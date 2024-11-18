@@ -5,6 +5,7 @@ export const createUpdateProductAction = async (product: Partial<Product>) => {
   const productId = product.id;
 
   const newImages = await uploadImages(product.images ?? []);
+  product.images = newImages;
 
   product = cleanProductForCreateUpdate(product);
 
@@ -50,8 +51,8 @@ const createProduct = async (product: Partial<Product>) => {
   try {
     const { data } = await tesloApi.post<Product>(`/products`, product);
     return data;
-  } catch (error) {
-    console.log(error);
+  } catch (error: any) {
+    console.log(error?.response?.data);
     throw new Error('Error creating product');
   }
 };

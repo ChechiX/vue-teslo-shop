@@ -17,6 +17,6 @@ export const getProductsAction = async (
     }));
   } catch (error) {
     console.log(error);
-    throw new Error('Error getting products');
+    // throw new Error('Error getting products');
   }
 };
